@@ -12,7 +12,6 @@ MACHINE-LEARNING/
 │       ├── ft_engineering.py          # Ingeniería de características
 │       ├── heuristic_model.py         # Modelo base o heurístico para comparación
 │       ├── model_training.ipynb       # Entrenamiento del modelo
-│       ├── model_evaluation.ipynb     # Evaluación y métricas del modelo
 │       ├── model_deploy.ipynb         # Despliegue del modelo
 │       ├── model_monitoring.ipynb     # Monitoreo del modelo en producción
 │
@@ -49,5 +48,63 @@ Incluye todo el proceso de limpieza, entrenamiento, evaluación y visualización
 ## 🚀 Cómo Ejecutarlo
 1. Clonar este repositorio  
    ```bash
-   git clone https://github.com/tu-usuario/proyecto-ml-regresion.git
+   git clone https://github.com/AlejoPerez10/ML_Proyecto_Final.git
+
+## Columnas de mi base de datos
+
+1- age
+
+2- sex
+
+3- chest pain type (4 values)
+   0 - Angina Típica
+   1 - Angina Atípica
+   2 - Dolor no angionoso
+   3 - Asintómatico
+
+4- resting blood pressure
+   Presión arterial en reposo
+
+5- serum cholestoral in mg/dl
+   Colesteron sérico
+
+6- fasting blood sugar > 120 mg/dl
+   Azúcar en ayunas
+
+7- resting electrocardiographic results (values 0,1,2)
+   0 - Normal
+   1 - Anomalía de la onda ST-T
+   2 - Hipertrofia ventricular izquierda
+
+8- maximum heart rate achieved
+   Frecuencia cardiaca máxima aclanzada
+
+9- exercise induced angina
+   Angina inducida por ejercicio
+
+10- oldpeak = ST depression induced by exercise relative to rest
+   Depresión del segmenteo ST provocado por ejercicio
+
+11- the slope of the peak exercise ST segment
+   Pendiente del segmento ST
+   0 - ascendente
+   1 - plano
+   2 - descendente
+
+12- number of major vessels (0-3) colored by flourosopy
+   Número de vasos principales (observados por fluoroscopia)
+
+13- thal: 0 = normal; 1 = fixed defect; 2 = reversable defect
+   Tipo de talsemio o defecto sanguíneo
+   0 - normal
+   1 - defecto fijo (permanente)
+   2 - defecto reversible (mejora con esfuerzo o tratamiento)
+
+14- Target 
+   0 - (NO) Enfermedad cardiaca ausente
+   1 - (SÍ) Enfermedad cardiaca presente
+
+
+## Commit
+Corrección de algunos nombres de las carpetas, cargo de mi base de datos, empiezo a desarrollar mi modelo con mi "Carga_datos.ipynb"
 
