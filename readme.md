@@ -104,7 +104,20 @@ Incluye todo el proceso de limpieza, entrenamiento, evaluación y visualización
    0 - (NO) Enfermedad cardiaca ausente
    1 - (SÍ) Enfermedad cardiaca presente
 
+## Categorías de mis variables
+
+• Numéricas → Son cantidades medibles. Se pueden sumar o promediar.
+Ej: edad, presión, colesterol, frecuencia cardíaca, oldpeak → como medir peso o temperatura.
+
+• Categóricas → Representan grupos o etiquetas, no cantidades.
+Ej: sex (h/m), fbs (sí/no), exang (sí/no), target (enfermo/sano), ca (0–3 vasos).
+
+• Categóricas nominales → Son categorías sin orden natural.
+Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
+
+• Categórica ordinal → Son categorías con orden lógico.
+Ej: slope (0 ascendente, 1 plana, 2 descendente).
 
 ## Commit
-Corrección de algunos nombres de las carpetas, cargo de mi base de datos, empiezo a desarrollar mi modelo con mi "Carga_datos.ipynb"
+Empiezo con mi Compresión_eda, categorizo mis variables, muestro mis gráficos, los analizo y hago algunos insights.
 
