@@ -4,23 +4,51 @@
 
 ```
 MACHINE-LEARNING/
-│
+├── entorno_ml-venv/                         # Entorno virtual con todas las librerías necesarias.
 ├── mlops_pipeline/
 │   └── src/
-│       ├── Cargar_datos.ipynb         # Carga y preprocesamiento inicial de los datos
-│       ├── comprension_eda.ipynb      # Análisis exploratorio de datos (EDA)
-│       ├── ft_engineering.py          # Ingeniería de características
-│       ├── heuristic_model.py         # Modelo base o heurístico para comparación
-│       ├── model_training.ipynb       # Entrenamiento del modelo
-│       ├── model_deploy.ipynb         # Despliegue del modelo
-│       ├── model_monitoring.ipynb     # Monitoreo del modelo en producción
+│       ├── __pycache__/                     # Archivos compilados de Python para rápida ejecución.
+│       ├── data/                            # almacena los datasets y pruebas del modelo.
+│       ├── Cargar_datos.ipynb               # Carga y preprocesamiento inicial de los datos
+│       ├── comprension_eda.ipynb            # Análisis exploratorio de datos (EDA)
+│       ├── ft_engineering.py                # Ingeniería de características
+│       ├── heuristic_model.py               # Modelo base o heurístico para comparación
+│       ├── model_deploy.py                  # Despliegue del modelo
+│       ├── model_evaluation.ipynb           # Evaluación del modelo
+│       ├── model_monitoring.py              # Entrenamiento del modelo
+│       ├── model_training_evaluation.py     # Monitoreo del modelo en producción
 │
-├── Base_de_datos.csv                  # Fuente principal de datos
-├── config.json                        # Configuraciones globales del proyecto
-├── requirements.txt                   # Librerías necesarias
-├── set_up.bat                         # Script para entorno de ejecución en Windows
-├── readme.md                          # Este archivo :)
+├── Base_de_datos.csv                        # Fuente principal de datos
+├── config.json                              # Configuraciones globales del proyecto
+├── readme.md                                # Este archivo
+├── requirements.txt                         # Librerías necesarias
+├── set_up.bat                               # Script para entorno de ejecución en Windows
 ```
+## 🐍 Activación del Entorno Virtual
+1️⃣ Abrir Powershell (terminal) y navegar a la raíz del proyecto.
+   ```bash
+   cd C:\Users\user\ML_Proyecto_Final
+
+2️⃣ Ejecutar el setup
+   ```bash
+   .\set_up.bat
+
+3️⃣ Ajustar permisos (si es necesario)
+   -Solo una vez, si da error al activar el entorno virtual
+   ```bash
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+4️⃣ Verificar
+   - Activar el entorno:
+   ```bash
+   .\entorno_ml-venv\Scripts\Activate.ps1
+
+   - Revisar librerías instaladas:
+   ```bash
+   pip list
+
+   - Abrir Jupyter y seleccionar el kernel:
+   entorno_ml-venv Python ETL
 
 ## 📋 Descripción
 Este proyecto aplica técnicas de **regresión en Machine Learning** para predecir una variable continua a partir de un conjunto de datos.  
@@ -38,17 +66,6 @@ Incluye todo el proceso de limpieza, entrenamiento, evaluación y visualización
 - Árbol de Decisión Regressor  
 - Random Forest Regressor  
 - Support Vector Regressor (SVR)  
-
-## 📊 Métricas de Evaluación
-- **MAE (Error Absoluto Medio)**  
-- **MSE (Error Cuadrático Medio)**  
-- **RMSE (Raíz del Error Cuadrático Medio)**  
-- **R² (Coeficiente de Determinación)**  
-
-## 🚀 Cómo Ejecutarlo
-1. Clonar este repositorio  
-   ```bash
-   git clone https://github.com/AlejoPerez10/ML_Proyecto_Final.git
 
 ## Columnas de mi base de datos
 
@@ -118,6 +135,4 @@ Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
 • Categórica ordinal → Son categorías con orden lógico.
 Ej: slope (0 ascendente, 1 plana, 2 descendente).
 
-## Commit
-Completo mi archivo ft_engineering.py y guardo los resultados en /data, también completo el model_training_evaluation.py y guardo los resultados en la misma carpeta /data.
 
