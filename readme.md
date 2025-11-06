@@ -119,5 +119,5 @@ Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
 Ej: slope (0 ascendente, 1 plana, 2 descendente).
 
 ## Commit
-Empiezo con mi Compresión_eda, categorizo mis variables, muestro mis gráficos, los analizo y hago algunos insights.
+Completo mi archivo ft_engineering.py y guardo los resultados en /data, también completo el model_training_evaluation.py y guardo los resultados en la misma carpeta /data.
 
