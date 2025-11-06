@@ -24,28 +24,34 @@ MACHINE-LEARNING/
 ├── requirements.txt                         # Librerías necesarias
 ├── set_up.bat                               # Script para entorno de ejecución en Windows
 ```
+
 ## 🐍 Activación del Entorno Virtual
 1️⃣ Abrir Powershell (terminal) y navegar a la raíz del proyecto.
    ```bash
    cd C:\Users\user\ML_Proyecto_Final
+   ```
 
 2️⃣ Ejecutar el setup
    ```bash
    .\set_up.bat
+   ```
 
 3️⃣ Ajustar permisos (si es necesario)
    -Solo una vez, si da error al activar el entorno virtual
    ```bash
    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
 
 4️⃣ Verificar
    - Activar el entorno:
    ```bash
    .\entorno_ml-venv\Scripts\Activate.ps1
+   ```
 
    - Revisar librerías instaladas:
    ```bash
    pip list
+   ```
 
    - Abrir Jupyter y seleccionar el kernel:
    entorno_ml-venv Python ETL
