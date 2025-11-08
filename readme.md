@@ -79,7 +79,7 @@ Incluye todo el proceso de limpieza, entrenamiento, evaluación y visualización
 - Random Forest Regressor  
 - Support Vector Regressor (SVR)  
 
-## Columnas de mi base de datos
+## Columnas de la base de datos
 
 **1-** age
 
@@ -133,7 +133,7 @@ Incluye todo el proceso de limpieza, entrenamiento, evaluación y visualización
    0 - (NO) Enfermedad cardiaca ausente
    1 - (SÍ) Enfermedad cardiaca presente
 
-## Categorías de mis variables
+## Categorías de las variables
 
 • **Numéricas →** Son cantidades medibles. Se pueden sumar o promediar.
 Ej: edad, presión, colesterol, frecuencia cardíaca, oldpeak → como medir peso o temperatura.
@@ -146,5 +146,3 @@ Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
 
 • **Categórica ordinal →** Son categorías con orden lógico.
 Ej: slope (0 ascendente, 1 plana, 2 descendente).
-
-
