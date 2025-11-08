@@ -1,9 +1,9 @@
 """
-Salidas:
-    - mlops_pipeline/src/data/feature_list.txt
-    - mlops_pipeline/src/data/pipeline_preprocessor.pkl
-    - mlops_pipeline/src/data/test.csv
-    - mlops_pipeline/src/data/train.csv
+Salidas (mlops_pipeline/data/):
+    - feature_list.txt
+    - pipeline_preprocessor.pkl
+    - test.csv
+    - train.csv
 
 Uso:
     python ft_engineering.py --input ../../Base_de_datos.csv --out_dir ./data --test_size 0.2 --random_state 42

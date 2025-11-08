@@ -19,16 +19,19 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 
 def build_model(model, X_train, y_train):
-    """Fit a model and return it"""
     model.fit(X_train, y_train)
     return model
 
 def summarize_classification(model, X_test, y_test):
-    """Return key metrics of a model"""
     y_pred = model.predict(X_test)
+    # try to get probabilities for ROC AUC if available
+    try:
+        y_prob = model.predict_proba(X_test)[:, 1]
+        roc = roc_auc_score(y_test, y_prob)
+    except Exception:
+        roc = roc_auc_score(y_test, y_pred)
     acc = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred)
-    roc = roc_auc_score(y_test, y_pred)
     return {'accuracy': acc, 'f1_score': f1, 'roc_auc': roc}
 
 def run(train_path, test_path, out_dir):
@@ -38,10 +41,21 @@ def run(train_path, test_path, out_dir):
     train = pd.read_csv(train_path)
     test = pd.read_csv(test_path)
 
-    X_train = train.drop(columns=['target'])
+    # separar X/y crudos
+    X_train_raw = train.drop(columns=['target'])
     y_train = train['target']
-    X_test = test.drop(columns=['target'])
+    X_test_raw = test.drop(columns=['target'])
     y_test = test['target']
+
+    # Cargar preprocessor generado en ft_engineering (DEBE existir)
+    preproc_path = out_dir / "pipeline_preprocessor.pkl"
+    if not preproc_path.exists():
+        raise FileNotFoundError(f"Preprocessor not found at {preproc_path}. Run ft_engineering first.")
+    preprocessor = joblib.load(preproc_path)
+
+    # Aplicar preprocessor: ahora X_train/X_test son las features finales que usará el modelo
+    X_train = preprocessor.transform(X_train_raw)
+    X_test = preprocessor.transform(X_test_raw)
 
     models = {
         'LogisticRegression': LogisticRegression(max_iter=1000, random_state=42),
@@ -74,7 +88,7 @@ def run(train_path, test_path, out_dir):
     plt.grid(axis='y')
     plt.tight_layout()
     plt.savefig(out_dir / 'model_comparison.png')
-    plt.show()
+    plt.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

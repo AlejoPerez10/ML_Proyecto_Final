@@ -1,6 +1,6 @@
 # 🧠 Proyecto de Modelo Supervisado Predictivo
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura del Proyecto (completar)
 
 ```
 MACHINE-LEARNING/
@@ -146,3 +146,10 @@ Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
 
 • **Categórica ordinal →** Son categorías con orden lógico.
 Ej: slope (0 ascendente, 1 plana, 2 descendente).
+
+## Model Monitoring
+• Al analizar los resultados del monitoreo del modelo, se observa que la mayoría de las variables se mantienen estables entre los datos de entrenamiento y los de prueba, lo que indica que el modelo sigue recibiendo información similar a la que fue entrenado.
+
+• Sin embargo, la variable “chol” (colesterol) muestra un ligero cambio (PSI 0.11 y KS p 0.013), lo que sugiere una pequeña diferencia en la distribución de los datos nuevos. Esto no afecta gravemente el desempeño, pero sí vale la pena seguir revisándola en futuras ejecuciones para asegurarse de que el modelo no empiece a degradarse.
+
+• En general, el modelo está estable y sin señales de drift importantes, lo que significa que por ahora se puede seguir usando sin necesidad de reentrenarlo.
