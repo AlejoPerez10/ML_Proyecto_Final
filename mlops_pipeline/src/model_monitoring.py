@@ -7,6 +7,10 @@ Para correrlo:
     1- Activa tu entorno virtual
     2- Ve a la carpeta src/
     3- Ejecuta:  python model_monitoring.py
+
+Salidas (mlops_pipeline/src/data - /results_history):
+    - resutls.csv
+    - monitoring(fecha).csv
 """
 
 import pandas as pd

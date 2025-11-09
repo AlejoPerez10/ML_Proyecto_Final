@@ -6,6 +6,7 @@
 Streamlit app para visualizar resultados de model monitoring:
     - Lee: ./data/results.csv  ./data/train.csv  ./data/test.csv  
     - También ./data/results_history/monitoring_<fecha>.csv.
+    - Obtiene predicciones usando FastAPI.
 
 Ejecutar: 
     - streamlit run streamlit_app.py
@@ -15,9 +16,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os
-import joblib
 import altair as alt
 from glob import glob
+import requests
+import io
 
 st.set_page_config(page_title="Model Monitoring", layout="wide")
 
@@ -26,7 +28,9 @@ RESULTS_PATH = os.path.join(DATA_DIR, "results.csv")
 HISTORY_DIR = os.path.join(DATA_DIR, "results_history")
 TRAIN_PATH = os.path.join(DATA_DIR, "train.csv")
 TEST_PATH = os.path.join(DATA_DIR, "test.csv")
-PREPROC_PATH = os.path.join(DATA_DIR, "pipeline_preprocessor.pkl")
+
+# URL de la API FastAPI
+API_URL = "http://host.docker.internal:8000"  # Contenedor FastAPI
 
 st.title("📊 Model Monitoring Dashboard")
 
@@ -142,29 +146,24 @@ if col_name:
         )
         st.altair_chart(chart, use_container_width=True)
 else:
-    st.info("No se encontró la variable original. Intentando con el preprocessor...")
-    if os.path.exists(PREPROC_PATH):
-        try:
-            pre = joblib.load(PREPROC_PATH)
-            feat_names = pre.get_feature_names_out()
-            if sel_var in feat_names:
-                X_train = pd.DataFrame(pre.transform(train_df), columns=feat_names)
-                X_test = pd.DataFrame(pre.transform(test_df), columns=feat_names)
-                dfp = pd.concat([
-                    pd.DataFrame({"value": X_train[sel_var], "dataset": "train"}),
-                    pd.DataFrame({"value": X_test[sel_var], "dataset": "test"})
-                ])
-                chart = alt.Chart(dfp).transform_density(
-                    "value", as_=["value", "density"], groupby=["dataset"]
-                ).mark_area(opacity=0.5).encode(
-                    x="value:Q", y="density:Q", color="dataset:N"
-                ).properties(width=700, height=300)
-                st.altair_chart(chart, use_container_width=True)
-            else:
-                st.warning("No se encontró la variable ni en las features transformadas.")
-        except Exception as e:
-            st.error(f"Error al cargar preprocessor: {e}")
+    st.info("No se encontró la variable original.")
 
-# --- 7) Nota final ---
+# --- 7) Obtener predicciones desde FastAPI ---
+st.subheader("📊 Predicciones usando FastAPI")
+uploaded_file = st.file_uploader("Sube un CSV para obtener predicciones", type="csv")
+if uploaded_file is not None:
+    try:
+        files = {"file": uploaded_file.getvalue()}
+        response = requests.post(f"{API_URL}/predict", files={"file": uploaded_file})
+        if response.status_code == 200:
+            preds = response.json()["predicciones"]
+            st.success("✅ Predicciones obtenidas correctamente")
+            st.dataframe(pd.DataFrame({"Predicciones": preds}))
+        else:
+            st.error(f"Error API: {response.status_code} - {response.text}")
+    except Exception as e:
+        st.error(f"Error conectando con la API: {e}")
+
+# --- 8) Nota final ---
 st.markdown("---")
 st.markdown("💡 **Sugerencia:** si observas múltiples variables con PSI > 0.25 o KS p < 0.05, considera reentrenar el modelo.")

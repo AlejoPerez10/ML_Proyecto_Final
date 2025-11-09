@@ -3,26 +3,45 @@
 ## 📁 Estructura del Proyecto (completar)
 
 ```
-MACHINE-LEARNING/
+ML_Proyecto_Final/
 ├── entorno_ml-venv/                         # Entorno virtual con todas las librerías necesarias.
 ├── mlops_pipeline/
 │   └── src/
 │       ├── __pycache__/                     # Archivos compilados de Python para rápida ejecución.
-│       ├── data/                            # almacena los datasets y pruebas del modelo.
-│       ├── Cargar_datos.ipynb               # Carga y preprocesamiento inicial de los datos
-│       ├── comprension_eda.ipynb            # Análisis exploratorio de datos (EDA)
-│       ├── ft_engineering.py                # Ingeniería de características
-│       ├── heuristic_model.py               # Modelo base o heurístico para comparación
-│       ├── model_deploy.py                  # Despliegue del modelo
-│       ├── model_evaluation.ipynb           # Evaluación del modelo
-│       ├── model_monitoring.py              # Entrenamiento del modelo
-│       ├── model_training_evaluation.py     # Monitoreo del modelo en producción
+│       │
+│       ├── API/                             # Contiene los archivos Docker para la API.
+│       │   ├── Dockerfile.api
+│       │   ├── Dockerfile.streamlit
+│       │
+│       ├── data/                            # Almacena los datasets y pruebas del modelo.
+│       │   ├── resutls_history/             # historico de resultados guardados con fecha.
+│       │   ├── best_model.pkl               # 
+│       │   ├── feature_list.txt             # 
+│       │   ├── model_comparison.png         # 
+│       │   ├── model_metrics.csv            # 
+│       │   ├── pipeline_preprocessor.pkl    # 
+│       │   ├── results.csv                  # 
+│       │   ├── test.csv                     # 
+│       │   ├── train.csv                    # 
+│       │
+│       ├── Cargar_datos.ipynb               # Carga y preprocesamiento inicial de los datos.
+│       ├── comprension_eda.ipynb            # Análisis exploratorio de datos (EDA).
+│       ├── data_loader.py                   # Archivo para cargar una sola vez el df.
+│       ├── ft_engineering.py                # Ingeniería de características.
+│       ├── heuristic_model.py               # Modelo base o heurístico para comparación.
+│       ├── model_deploy.py                  # Despliegue del modelo.
+│       ├── model_evaluation.ipynb           # Evaluación del modelo.
+│       ├── model_monitoring.py              # Entrenamiento del modelo.
+│       ├── model_training_evaluation.py     # Monitoreo del modelo en producción.
+│       ├── streamlit_app.py                 # Interfaz gráfica de mi app.
 │
-├── Base_de_datos.csv                        # Fuente principal de datos
-├── config.json                              # Configuraciones globales del proyecto
-├── readme.md                                # Este archivo
-├── requirements.txt                         # Librerías necesarias
-├── set_up.bat                               # Script para entorno de ejecución en Windows
+├── .dockerignore                            # Archivos a ignorar dentro de Docker.
+├── .gitignore                               # Archivos a ignorar dentro de Git.
+├── Base_de_datos.csv                        # Fuente principal de datos.
+├── config.json                              # Configuraciones globales del proyecto.
+├── readme.md                                # Este archivo.
+├── requirements.txt                         # Librerías necesarias.
+├── set_up.bat                               # Script para entorno de ejecución en Windows.
 ```
 
 ## 🐍 Activación del Entorno Virtual
@@ -153,3 +172,37 @@ Ej: slope (0 ascendente, 1 plana, 2 descendente).
 • Sin embargo, la variable “chol” (colesterol) muestra un ligero cambio (PSI 0.11 y KS p 0.013), lo que sugiere una pequeña diferencia en la distribución de los datos nuevos. Esto no afecta gravemente el desempeño, pero sí vale la pena seguir revisándola en futuras ejecuciones para asegurarse de que el modelo no empiece a degradarse.
 
 • En general, el modelo está estable y sin señales de drift importantes, lo que significa que por ahora se puede seguir usando sin necesidad de reentrenarlo.
+
+## Levantar conexión entre Docker, FastAPI y Streamlit
+1- Construir las imágenes Docker
+
+   • FastAPI
+   ```
+   docker build -t myapi -f mlops_pipeline/src/API/Dockerfile.api .
+   ```
+
+   • Streamlit
+   ```
+   docker build -t mystreamlit -f mlops_pipeline/src/API/Dockerfile.streamlit .
+   ```
+
+2- Correr los contenedores
+   
+   • FastAPI
+   ```
+   docker run -p 8000:8000 myapi
+   ```
+
+   • Streamlit
+   ```
+   docker run -p 8501:8501 mystreamlit
+   ```
+
+3- Probar la APP
+   • Streamlit: ```http://localhost:8501```
+   • API FastAPI: ```http://localhost:8000```
+
+4- Para detener los contenedores
+   ```
+   CTRL + C
+   ```
