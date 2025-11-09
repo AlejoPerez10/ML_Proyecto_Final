@@ -9,7 +9,7 @@ Para correrlo:
     3- Ejecuta:  python model_monitoring.py
 
 Salidas (mlops_pipeline/src/data - /results_history):
-    - resutls.csv
+    - results.csv
     - monitoring(fecha).csv
 """
 
@@ -22,18 +22,21 @@ import os
 import datetime as dt
 import warnings
 import joblib
+from pathlib import Path
 warnings.filterwarnings("ignore")
 
 # ------------------------------------------------------
 # 1. CARGA DE DATOS
 # ------------------------------------------------------
+BASE_DIR = Path(__file__).parent
+DATA_DIR = BASE_DIR / "data"
+
 def load_data():
-    baseline_raw = pd.read_csv('./data/train.csv')
-    current_raw  = pd.read_csv('./data/test.csv')
+    baseline_raw = pd.read_csv(DATA_DIR / 'train.csv')
+    current_raw  = pd.read_csv(DATA_DIR / 'test.csv')
     baseline_df = baseline_raw.copy()
     current_df  = current_raw.copy()
     return baseline_df, current_df, baseline_raw, current_raw
-
 
 # ------------------------------------------------------
 # 2. FUNCIONES DE MÉTRICAS
@@ -66,7 +69,6 @@ def chi_square_test(expected, actual):
     chi2, p, _, _ = stats.chi2_contingency(contingency)
     return chi2, p
 
-
 # ------------------------------------------------------
 # 3. PROCESO DE MONITOREO
 # ------------------------------------------------------
@@ -74,8 +76,8 @@ def monitor_data_drift():
     baseline_df, current_df, baseline_raw, current_raw = load_data()
     common_cols = [col for col in baseline_df.columns if col in current_df.columns]
 
-    preprocessor_path = './data/pipeline_preprocessor.pkl'
-    if os.path.exists(preprocessor_path):
+    preprocessor_path = DATA_DIR / 'pipeline_preprocessor.pkl'
+    if preprocessor_path.exists():
         preprocessor = joblib.load(preprocessor_path)
         try:
             baseline_df = pd.DataFrame(preprocessor.transform(baseline_df), columns=preprocessor.get_feature_names_out())
@@ -148,17 +150,16 @@ def monitor_data_drift():
     df_results["recomendar_retrain"] = df_results["PSI"].apply(lambda x: True if x is not None and x > 0.25 else False)
 
     # Guardar resultados
-    os.makedirs("./data", exist_ok=True)
-    df_results.to_csv("./data/results.csv", index=False)
+    DATA_DIR.mkdir(exist_ok=True)
+    df_results.to_csv(DATA_DIR / "results.csv", index=False)
 
     # Guardar histórico con fecha
-    os.makedirs("./data/results_history", exist_ok=True)
+    (DATA_DIR / "results_history").mkdir(exist_ok=True)
     fecha = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    df_results.to_csv(f"./data/results_history/monitoring_{fecha}.csv", index=False)
+    df_results.to_csv(DATA_DIR / f"results_history/monitoring_{fecha}.csv", index=False)
 
     print("✅ Monitoreo completado. Resultados guardados en './data/results.csv' y carpeta /results_history/")
     return df_results
-
 
 # ------------------------------------------------------
 # 4. EJECUCIÓN

@@ -1,0 +1,96 @@
+
+1.0PythonFrontend"1762665250421*py2.B“
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+;
+6mlops_pipeline/tests/test_model_training_evaluation.py9
+$
+test_model_training_evaluation11
+
+sklearn.linear_model12
+2
+,mlops_pipeline.src.model_training_evaluation14
+
+tempfile16
+
+pathlib18
+
+sklearn.preprocessing20
+
+sklearn.pipeline22
+5
+/test_model_training_evaluation.test_build_model24
+-
+'test_model_training_evaluation.test_run26
+B
+<test_model_training_evaluation.test_summarize_classification28J
+
+8
+89jß
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21205
+
+23
+23225
+
+25
+25247 210
+
+27
+27267 210
+
+29
+29287 210r¶
+
+10131*
+8 (4
+
+10151*
+8 (d
+
+10171*
+8 (
+
+10191*
+8 (
+
+10211*
+8
+ 
+(1
+
+10211*
+8. .(5
+
+10231*
+8/ /(*

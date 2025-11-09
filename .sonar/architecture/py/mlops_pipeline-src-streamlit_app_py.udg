@@ -1,0 +1,82 @@
+
+1.0PythonFrontend"1762665250241*py2.B‚
+
+imports1
+
+extends2
+
+returns3
+
+	has param4
+
+module5
+
+
+class6
+
+function7
+(
+#mlops_pipeline/src/streamlit_app.py9
+
+streamlit_app11
+
+os12
+
+
+glob14
+
+requests16
+
+io18
+ 
+streamlit_app.load_history20
+#
+streamlit_app.load_train_test22
+&
+ streamlit_app.find_column_in_dfs24
+ 
+streamlit_app.load_results26J
+
+8
+89j“
+ 
+10
+10115 *
+8 (
+
+13
+13125
+
+15
+15145
+
+17
+17165
+
+19
+19185
+
+21
+21207 210
+
+23
+23227 210
+
+25
+25247 210
+
+27
+27267 210rh
+
+10131*
+8 (
+
+
+10151*
+8 (
+
+10171*
+8 (
+
+10191*
+8 (

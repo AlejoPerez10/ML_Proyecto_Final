@@ -206,3 +206,16 @@ Ej: slope (0 ascendente, 1 plana, 2 descendente).
    ```
    CTRL + C
    ```
+
+## Ejecutar pruebas de SonarQube Cloud
+   ```
+   pysonar `--sonar-token=671bd2e4a569eb087980ba45285b40cc32db24d9 `--sonar-project-key=AlejoPerez10_ML_Proyecto_Final `--sonar-organization=alejoperez10
+   ```
+
+## Pruebas en Sonar
+![Primera prueba en SonarQube Cloud](/images/image.png)
+
+## Ejecutar pruebas unitarias
+   ```
+   pytest mlops_pipeline/tests --cov=mlops_pipeline/src --cov-report=xml
+   ```

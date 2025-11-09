@@ -1,0 +1,7 @@
+organization=alejoperez10
+projectKey=AlejoPerez10_ML_Proyecto_Final
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.76401
+dashboardUrl=https://sonarcloud.io/dashboard?id=AlejoPerez10_ML_Proyecto_Final
+ceTaskId=AZpnCir_c6uKnxYqTn2U
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZpnCir_c6uKnxYqTn2U
