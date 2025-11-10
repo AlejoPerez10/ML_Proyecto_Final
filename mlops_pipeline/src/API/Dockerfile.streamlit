@@ -8,16 +8,13 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
+WORKDIR /app/mlops_pipeline/src
 
-# Copiar requirements.txt desde la raíz del proyecto
-COPY requirements.txt .
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copiar todo mlops_pipeline/ al contenedor
-COPY mlops_pipeline/ ./mlops_pipeline/
+COPY mlops_pipeline/ /app/mlops_pipeline/
 
 EXPOSE 8501
 
-CMD ["bash", "-lc", "python mlops_pipeline/src/model_monitoring.py && streamlit run mlops_pipeline/src/streamlit_app.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true"]
+CMD ["bash", "-lc", "python model_monitoring.py && streamlit run streamlit_app.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true"]
