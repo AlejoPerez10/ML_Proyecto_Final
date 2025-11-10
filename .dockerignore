@@ -1,3 +1,7 @@
 __pycache__
 *.pyc
 .env
+.scannerwork/
+.sonar/
+entorno_ml-venv/
+.pytest_cache/

@@ -1,0 +1,5 @@
+__pycache__/
+.scannerwork/
+.sonar/
+entorno_ml-venv/
+.pytest_cache/
