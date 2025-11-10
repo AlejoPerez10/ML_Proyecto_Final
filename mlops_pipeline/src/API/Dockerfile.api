@@ -9,8 +9,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar todo el src/ al contenedor
-COPY mlops_pipeline/src/ .
+COPY mlops_pipeline/ ./mlops_pipeline/
 
 EXPOSE 8000
 
-CMD ["uvicorn", "model_deploy:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "mlops_pipeline.src.model_deploy:app", "--host", "0.0.0.0", "--port", "8000"]
