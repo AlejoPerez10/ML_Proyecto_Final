@@ -429,3 +429,30 @@ Construí las imágenes Docker con los comandos:
    ```
    pysonar `--sonar-token=671bd2e4a569eb087980ba45285b40cc32db24d9 `--sonar-project-key=AlejoPerez10_ML_Proyecto_Final `--sonar-organization=alejoperez10
    ```
+
+## Para calificar ✅ `PUNTOS CONFUSOS`
+
+- [ ] ¿Se unifica la representación de los valores nulos?
+`No tengo datos nulos en mi base de datos`
+
+- [ ] ¿Se eliminan variables irrelevantes?
+`No tengo columnas de identificación personal`
+
+- [ ] ¿Se corrigen inconsistencias en los datos?
+`Cargar_datos.ipynb`
+
+- [ ] ¿Se ejecuta describe() después de ajustar los tipos de datos?
+`Cargar_datos`
+
+- [ ] ¿Se identifica el tipo de distribución de las variables?
+`compresion_eda.ipynb → 2) Análisis Univariable → 2.3)`
+
+- [ ] ¿Se analizan relaciones entre variables y la variable objetivo?
+`comprension_eda.ipynb → 2) Análisis Univariable → 2.4) y 2.6)`
+
+Data monitoring
+- [ ] ¿Se implementa una interfaz funcional en Streamlit?
+`streamlit_app.py`
+
+- [ ] ¿Se muestran gráficos comparativos entre distribución histórica vs actual?
+`streamlit_app.py`
