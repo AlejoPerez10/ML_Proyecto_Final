@@ -31,7 +31,7 @@ TRAIN_PATH = os.path.join(DATA_DIR, "train.csv")
 TEST_PATH = os.path.join(DATA_DIR, "test.csv")
 
 # URL de la API FastAPI
-API_URL = "http://host.docker.internal:8000"  # Contenedor FastAPI
+API_URL = os.getenv("API_URL", "https://ml-proyecto-final.onrender.com")  # Contenedor FastAPI
 
 st.title("📊 Model Monitoring Dashboard")
 
