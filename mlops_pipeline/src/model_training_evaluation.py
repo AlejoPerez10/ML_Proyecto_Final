@@ -17,6 +17,7 @@ from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.model_selection import cross_val_score
 
 def build_model(model, X_train, y_train):
     model.fit(X_train, y_train)
@@ -66,6 +67,10 @@ def run(train_path, test_path, out_dir):
     trained_models = {}
 
     for name, model in models.items():
+        # Cross-validation
+        scores = cross_val_score(model, X_train, y_train, cv=5, scoring='f1')
+        print(f"{name} CV F1 mean:", scores.mean())
+
         trained_model = build_model(model, X_train, y_train)
         trained_models[name] = trained_model
         metrics = summarize_classification(trained_model, X_test, y_test)

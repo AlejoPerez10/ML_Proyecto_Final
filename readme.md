@@ -52,6 +52,79 @@ ML_Proyecto_Final/
 ├── set_up.bat                               # Script para entorno de ejecución en Windows.
 ```
 
+## Descripción general del Dataset
+
+- El Heart Disease Dataset proviene de estudios médicos realizados en 1988 en cuatro lugares (Cleveland, Hungría, Suiza y Long Beach). Contiene información clínica de pacientes, con 14 atributos más relevantes (como edad, sexo, presión arterial, colesterol, frecuencia cardíaca, entre otros).
+El objetivo del conjunto de datos es predecir la presencia de una enfermedad cardíaca, indicada por la variable “target” (0 = sin enfermedad, 1 = con enfermedad).
+
+### Columnas de mi Dataset
+
+**1-** age `Edad`
+
+**2-** sex `Sexo`
+
+**3-** chest pain type (4 values) `Tipo de dolor en el pecho`
+- 0 - Angina Típica
+- 1 - Angina Atípica
+- 2 - Dolor no angionoso
+- 3 - Asintómatico
+
+**4-** resting blood pressure
+   `Presión arterial en reposo`
+
+**5-** serum cholestoral in mg/dl
+   `Colesteron sérico`
+
+**6-** fasting blood sugar > 120 mg/dl
+   `Azúcar en ayunas`
+
+**7-** resting electrocardiographic results (values 0,1,2) `Resultados del electrocardiograma en reposo`
+- 0 - Normal
+- 1 - Anomalía de la onda ST-T
+- 2 - Hipertrofia ventricular izquierda
+
+**8-** maximum heart rate achieved
+   `Frecuencia cardiaca máxima aclanzada`
+
+**9-** exercise induced angina
+   `Angina inducida por ejercicio`
+
+**10-** oldpeak = ST depression induced by exercise relative to rest
+   `Depresión del segmenteo ST provocado por ejercicio`
+
+**11-** the slope of the peak exercise ST segment
+   `Pendiente del segmento ST`
+- 0 - ascendente
+- 1 - plano
+- 2 - descendente
+
+**12-** number of major vessels (0-3) colored by flourosopy
+   `Número de vasos principales (observados por fluoroscopia)`
+
+**13-** thal: 0 = normal; 1 = fixed defect; 2 = reversable defect
+   `Tipo de talsemio o defecto sanguíneo`
+- 0 - normal
+- 1 - defecto fijo (permanente)
+- 2 - defecto reversible (mejora con esfuerzo o tratamiento)
+
+**14-** Target `Objetivo`
+- 0 - (NO) Enfermedad cardiaca ausente
+- 1 - (SÍ) Enfermedad cardiaca presente
+
+### Categorías de las variables
+
+- **`Numéricas →`** Son cantidades medibles. Se pueden sumar o promediar.
+Ej: edad, presión, colesterol, frecuencia cardíaca, oldpeak → como medir peso o temperatura.
+
+- **`Categóricas →`** Representan grupos o etiquetas, no cantidades.
+Ej: sex (h/m), fbs (sí/no), exang (sí/no), target (enfermo/sano), ca (0–3 vasos).
+
+- **`Categóricas nominales →`** Son categorías sin orden natural.
+Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
+
+- **`Categórica ordinal →`** Son categorías con orden lógico.
+Ej: slope (0 ascendente, 1 plana, 2 descendente).
+
 ## 🐍 Entorno Virtual y Activación
 
 - Para este proyecto creé mi propio entorno virtual con todas las dependencias y librerías necearias para no tener ningún problema a la hora de trabajar con él desde un pc remoto, para activarlo haz los siguientes pasos:
@@ -313,75 +386,7 @@ Construí las imágenes Docker con los comandos:
 
 *Con este paso, el proyecto queda completamente funcional y desplegado en la web, cumpliendo con todos los requisitos de accesibilidad y uso práctico.*
 
-## Columnas de la base de datos
-
-**1-** age
-
-**2-** sex
-
-**3-** chest pain type (4 values)
-- 0 - Angina Típica
-- 1 - Angina Atípica
-- 2 - Dolor no angionoso
-- 3 - Asintómatico
-
-**4-** resting blood pressure
-   `Presión arterial en reposo`
-
-**5-** serum cholestoral in mg/dl
-   `Colesteron sérico`
-
-**6-** fasting blood sugar > 120 mg/dl
-   `Azúcar en ayunas`
-
-**7-** resting electrocardiographic results (values 0,1,2)
-- 0 - Normal
-- 1 - Anomalía de la onda ST-T
-- 2 - Hipertrofia ventricular izquierda
-
-**8-** maximum heart rate achieved
-   `Frecuencia cardiaca máxima aclanzada`
-
-**9-** exercise induced angina
-   `Angina inducida por ejercicio`
-
-**10-** oldpeak = ST depression induced by exercise relative to rest
-   `Depresión del segmenteo ST provocado por ejercicio`
-
-**11-** the slope of the peak exercise ST segment
-   `Pendiente del segmento ST`
-- 0 - ascendente
-- 1 - plano
-- 2 - descendente
-
-**12-** number of major vessels (0-3) colored by flourosopy
-   `Número de vasos principales (observados por fluoroscopia)`
-
-**13-** thal: 0 = normal; 1 = fixed defect; 2 = reversable defect
-   `Tipo de talsemio o defecto sanguíneo`
-- 0 - normal
-- 1 - defecto fijo (permanente)
-- 2 - defecto reversible (mejora con esfuerzo o tratamiento)
-
-**14-** Target 
-- 0 - (NO) Enfermedad cardiaca ausente
-- 1 - (SÍ) Enfermedad cardiaca presente
-
-## Categorías de las variables
-
-- **Numéricas →** Son cantidades medibles. Se pueden sumar o promediar.
-Ej: edad, presión, colesterol, frecuencia cardíaca, oldpeak → como medir peso o temperatura.
-
-- **Categóricas →** Representan grupos o etiquetas, no cantidades.
-Ej: sex (h/m), fbs (sí/no), exang (sí/no), target (enfermo/sano), ca (0–3 vasos).
-
-- **Categóricas nominales →** Son categorías sin orden natural.
-Ej: cp, restecg, thal → tipos distintos (no mejores ni peores entre sí).
-
-- **Categórica ordinal →** Son categorías con orden lógico.
-Ej: slope (0 ascendente, 1 plana, 2 descendente).
-
-### Levantar conexión entre Docker, FastAPI y Streamlit
+## Levantar conexión entre Docker, FastAPI y Streamlit `¡SOLO PARA ENTORNO LOCAL!`
 1- Construir las imágenes Docker
 
 - FastAPI
@@ -415,15 +420,12 @@ Ej: slope (0 ascendente, 1 plana, 2 descendente).
    CTRL + C
    ```
 
-### Ejecutar pruebas de SonarQube Cloud
-   ```
-   pysonar `--sonar-token=671bd2e4a569eb087980ba45285b40cc32db24d9 `--sonar-project-key=AlejoPerez10_ML_Proyecto_Final `--sonar-organization=alejoperez10
-   ```
-
-### Pruebas en Sonar
-![Primera prueba en SonarQube Cloud](/images/image.png)
-
-### Ejecutar pruebas unitarias
+## Ejecutar pruebas unitarias `(en local)`
    ```
    pytest mlops_pipeline/tests --cov=mlops_pipeline/src --cov-report=xml
+   ```
+
+## Ejecutar pruebas de SonarQube Cloud `(en local)`
+   ```
+   pysonar `--sonar-token=671bd2e4a569eb087980ba45285b40cc32db24d9 `--sonar-project-key=AlejoPerez10_ML_Proyecto_Final `--sonar-organization=alejoperez10
    ```

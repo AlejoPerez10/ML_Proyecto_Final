@@ -20,6 +20,7 @@ import altair as alt
 from glob import glob
 import requests
 import io
+import json
 
 st.set_page_config(page_title="Model Monitoring", layout="wide")
 
@@ -118,7 +119,6 @@ col_name = find_column_in_dfs(sel_var, train_df, test_df)
 
 if col_name:
     if pd.api.types.is_numeric_dtype(train_df[col_name]):
-        # numérica → densidad
         train_plot = pd.DataFrame({"value": train_df[col_name], "dataset": "train"})
         test_plot = pd.DataFrame({"value": test_df[col_name], "dataset": "test"})
         plot_df = pd.concat([train_plot, test_plot])
@@ -133,7 +133,6 @@ if col_name:
         ).properties(width=700, height=300)
         st.altair_chart(chart, use_container_width=True)
     else:
-        # categórica → barras
         train_counts = train_df[col_name].value_counts().reset_index()
         test_counts = test_df[col_name].value_counts().reset_index()
         train_counts["dataset"] = "train"
@@ -150,13 +149,18 @@ else:
 
 # --- 7) Obtener predicciones desde FastAPI ---
 st.subheader("📊 Predicciones usando FastAPI")
-uploaded_file = st.file_uploader("Sube un CSV para obtener predicciones", type="csv")
+uploaded_file = st.file_uploader("Sube un archivo para obtener predicciones", type=["csv", "json"])
 if uploaded_file is not None:
     try:
-        files = {"file": uploaded_file.getvalue()}
-        response = requests.post(f"{API_URL}/predict", files={"file": uploaded_file})
+        if uploaded_file.name.endswith(".csv"):
+            files = {"file": uploaded_file.getvalue()}
+            response = requests.post(f"{API_URL}/predict", files=files)
+        else:
+            data_json = json.load(uploaded_file)
+            response = requests.post(f"{API_URL}/predict", json=data_json)
+
         if response.status_code == 200:
-            preds = response.json()["predicciones"]
+            preds = response.json().get("predicciones", [])
             st.success("✅ Predicciones obtenidas correctamente")
             st.dataframe(pd.DataFrame({"Predicciones": preds}))
         else:
